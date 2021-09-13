@@ -1,0 +1,1991 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/6/2021 9:35:16 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-5H6628A"
+  DTS:CreatorName="DESKTOP-5H6628A\Maciej"
+  DTS:DTSID="{FBD4FCA5-A646-4B4A-985D-D580407B2E6A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1045"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{8B2359EC-0991-4074-A3D8-ACFD151F6445}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="SSIS_wyklad_LOG"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{375BA3A8-62EA-4400-A510-3C14EE2038EE}"
+      DTS:ObjectName="SSIS log provider for SQL Server1">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{ED6CB3AF-80F5-4F34-A571-FA2DC9C361ED}"
+      DTS:ObjectName="pObject">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Sales</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D0B3A1EB-502D-46BF-8FCB-20EA9C1058D4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vNoRows">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F1046E8B-C460-4831-8BE4-C1CA459BD533}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select * from fact.sale&#xA;where YEAR([Invoice Date Key]) =&quot;+ (DT_WSTR, 4)  @[User::vYear] +&quot; &quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vSQL">
+      <DTS:VariableValue
+        DTS:DataType="8">select * from fact.sale
+where YEAR([Invoice Date Key]) =2010 </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2925998D-2930-471B-88AB-E238F55916C2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vYear">
+      <DTS:VariableValue
+        DTS:DataType="3">2010</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">1,10,OnProgress</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container"
+      DTS:AssignExpression="@vYear = @vYear + 1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:DTSID="{4172314B-EAB6-4CD5-8734-1804BF9A6717}"
+      DTS:EvalExpression="@vYear &lt; 2015"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@vYear = 2010"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="For Loop Container">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container\DFT_Sales"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{E6075651-A475-4CE4-972F-30891A93168E}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT_Sales"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1" />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\For Loop Container\DFT_Sales.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{85F7E70A-C43C-4A80-A3A3-9B9967310002}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{0A2DC724-DEA9-477B-92D4-669E1830DD58}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\For Loop Container\DFT_Sales.EventHandlers[OnError]\SCR_Error"
+                  DTS:CreationName="Microsoft.ScriptTask"
+                  DTS:Description="Script Task"
+                  DTS:DTSID="{93ECFC3F-CCAB-49DF-AD3E-3DB2D89B0B4D}"
+                  DTS:ExecutableType="Microsoft.ScriptTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="SCR_Error">
+                  <DTS:Variables />
+                  <DTS:ObjectData>
+                    <ScriptProject
+                      Name="ST_5cc52bb0c7d940629533a7b10d5f5f04"
+                      VSTAMajorVersion="15"
+                      VSTAMinorVersion="0"
+                      Language="VisualBasic"
+                      ReadOnlyVariables="User::vSQL,User::vYear">
+                      <ProjectItem
+                        Name="My Project\Settings.Designer.vb"
+                        Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+
+Partial Friend NotInheritable Class MySettings
+    Inherits System.Configuration.ApplicationSettingsBase
+
+    Private Shared m_Value As MySettings
+
+    Private Shared m_SyncObject As Object = New Object
+
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Public Shared ReadOnly Property Value() As MySettings
+        Get
+            If (MySettings.m_Value Is Nothing) Then
+                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
+                If (MySettings.m_Value Is Nothing) Then
+                    Try
+                        MySettings.m_Value = New MySettings
+                    Finally
+                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
+                    End Try
+                End If
+            End If
+            Return MySettings.m_Value
+        End Get
+    End Property
+End Class]]></ProjectItem>
+                      <ProjectItem
+                        Name="ScriptMain.vb"
+                        Encoding="UTF8"><![CDATA[#Region "Help:  Introduction to the script task"
+'The Script Task allows you to perform virtually any operation that can be accomplished in
+'a .Net application within the context of an Integration Services control flow. 
+
+'Expand the other regions which have "Help" prefixes for examples of specific ways to use
+'Integration Services features within this script task.
+#End Region
+
+
+#Region "Imports"
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+#End Region
+
+'ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+'or parent of this class.
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute()> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+    Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+#Region "Help:  Using Integration Services variables and parameters in a script"
+    'To use a variable in this script, first ensure that the variable has been added to 
+    'either the list contained in the ReadOnlyVariables property or the list contained in 
+    'the ReadWriteVariables property of this script task, according to whether or not your
+    'code needs to write to the variable.  To add the variable, save this script, close this instance of
+    'Visual Studio, and update the ReadOnlyVariables and 
+    'ReadWriteVariables properties in the Script Transformation Editor window.
+    'To use a parameter in this script, follow the same steps. Parameters are always read-only.
+
+    'Example of reading from a variable:
+    ' startTime = Dts.Variables("System::StartTime").Value
+
+    'Example of writing to a variable:
+    ' Dts.Variables("User::myStringVariable").Value = "new value"
+
+    'Example of reading from a package parameter:
+    ' batchId = Dts.Variables("$Package::batchId").Value
+
+    'Example of reading from a project parameter:
+    ' batchId = Dts.Variables("$Project::batchId").Value
+
+    'Example of reading from a sensitive project parameter:
+    ' batchId = Dts.Variables("$Project::batchId").GetSensitiveValue()
+#End Region
+
+#Region "Help:  Firing Integration Services events from a script"
+    'This script task can fire events for logging purposes.
+
+    'Example of firing an error event:
+    ' Dts.Events.FireError(18, "Process Values", "Bad value", "", 0)
+
+    'Example of firing an information event:
+    ' Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, fireAgain)
+
+    'Example of firing a warning event:
+    ' Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0)
+#End Region
+
+#Region "Help:  Using Integration Services connection managers in a script"
+    'Some types of connection managers can be used in this script task.  See the topic 
+    '"Working with Connection Managers Programatically" for details.
+
+    'Example of using an ADO.Net connection manager:
+    ' Dim rawConnection As Object = Dts.Connections("Sales DB").AcquireConnection(Dts.Transaction)
+    ' Dim myADONETConnection As SqlConnection = CType(rawConnection, SqlConnection)
+    ' <Use the connection in some code here, then release the connection>
+    ' Dts.Connections("Sales DB").ReleaseConnection(rawConnection)
+
+    'Example of using a File connection manager
+    ' Dim rawConnection As Object = Dts.Connections("Prices.zip").AcquireConnection(Dts.Transaction)
+    ' Dim filePath As String = CType(rawConnection, String)
+    ' <Use the connection in some code here, then release the connection>
+    ' Dts.Connections("Prices.zip").ReleaseConnection(rawConnection)
+#End Region
+
+    'This method is called when this script task executes in the control flow.
+    'Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+    'To open Help, press F1.
+
+    Public Sub Main()
+
+        MessageBox.Show(Dts.Variables("vSQL").Value.ToString)
+
+        Dts.TaskResult = ScriptResults.Success
+    End Sub
+
+#Region "ScriptResults declaration"
+    'This enum provides a convenient shorthand within the scope of this class for setting the
+    'result of the script.
+
+    'This code was generated automatically.
+    Enum ScriptResults
+        Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+        Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+    End Enum
+
+#End Region
+
+End Class]]></ProjectItem>
+                      <ProjectItem
+                        Name="My Project\Settings.settings"
+                        Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+                      <ProjectItem
+                        Name="My Project\AssemblyInfo.vb"
+                        Encoding="UTF8"><![CDATA[Imports System
+Imports System.Reflection
+Imports System.Runtime.InteropServices
+
+' General Information about an assembly is controlled through the following 
+' set of attributes. Change these attribute values to modify the information
+' associated with an assembly.
+
+' Review the values of the assembly attributes
+
+<Assembly: AssemblyTitle("ST_5cc52bb0c7d940629533a7b10d5f5f04")> 
+<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyCompany("")> 
+<Assembly: AssemblyProduct("ST_5cc52bb0c7d940629533a7b10d5f5f04")> 
+<Assembly: AssemblyCopyright("Copyright @  2021")> 
+<Assembly: AssemblyTrademark("")> 
+<Assembly: CLSCompliant(True)> 
+
+<Assembly: ComVisible(False)> 
+
+'The following GUID is for the ID of the typelib if this project is exposed to COM
+<Assembly: Guid("6ea2acb8-2015-4c31-860e-e5f3b3ec9743")> 
+
+' Version information for an assembly consists of the following four values:
+'
+'      Major Version
+'      Minor Version 
+'      Build Number
+'      Revision
+'
+' You can specify all the values or you can default the Build and Revision Numbers 
+' by using the '*' as shown below:
+' <Assembly: AssemblyVersion("1.0.*")>
+
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
+                      <ProjectItem
+                        Name="ST_5cc52bb0c7d940629533a7b10d5f5f04.vbproj"
+                        Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{d42f64c0-a8d2-448b-8699-bfce26e2aa4b}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>My Project</AppDesignerFolder>
+    <RootNamespace>ST_5cc52bb0c7d940629533a7b10d5f5f04</RootNamespace>
+    <AssemblyName>ST_5cc52bb0c7d940629533a7b10d5f5f04</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AppDesigner Include="My Project\" />
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScriptMain.vb">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <!-- Include the build rules for a VB project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptTask"
+                           HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}"
+                           ApplicationType="usd"
+                           Language="vb"
+                           TemplatesPath=""
+                           DebugInfoCommandLine=""
+                           DebugInfoWorkingDir=""
+                           IconImageList=""/>
+
+        <Host Name="ScriptTask" IconIndex="">
+        </Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST150</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+                      <ProjectItem
+                        Name="Project"
+                        Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:Language>msBuild</msb:Language>
+    <msb:CodeName>ST_5cc52bb0c7d940629533a7b10d5f5f04</msb:CodeName>
+    <msb:DisplayName>ST_5cc52bb0c7d940629533a7b10d5f5f04</msb:DisplayName>
+    <msb:ProjectId>{22E82638-8C8D-4249-82C0-9352CE248DE6}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_5cc52bb0c7d940629533a7b10d5f5f04.vbproj" />
+    <msb:File Include="My Project\AssemblyInfo.vb" />
+    <msb:File Include="ScriptMain.vb" />
+    <msb:File Include="My Project\Resources.resx" />
+    <msb:File Include="My Project\Resources.Designer.vb" />
+    <msb:File Include="My Project\Settings.settings" />
+    <msb:File Include="My Project\Settings.Designer.vb" />
+  </msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+                      <ProjectItem
+                        Name="My Project\Resources.resx"
+                        Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+                      <ProjectItem
+                        Name="My Project\Resources.Designer.vb"
+                        Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+Namespace My.Resources
+    
+    '''<summary>
+    '''   A strongly-typed resource class, for looking up localized strings, etc.
+    '''</summary>
+    'This class was auto-generated by the Strongly Typed Resource Builder
+    'class via a tool like ResGen or Visual Studio.NET.
+    'To add or remove a member, edit your .ResX file then rerun ResGen
+    'with the /str option, or rebuild your VS project.
+    Class MyResources
+        
+        Private Shared _resMgr As System.Resources.ResourceManager
+        
+        Private Shared _resCulture As System.Globalization.CultureInfo
+        
+        Friend Sub New()
+            MyBase.New
+        End Sub
+        
+        '''<summary>
+        '''   Returns the cached ResourceManager instance used by this class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared ReadOnly Property ResourceManager() As System.Resources.ResourceManager
+            Get
+                If (_resMgr Is Nothing) Then
+                    Dim temp As System.Resources.ResourceManager = New System.Resources.ResourceManager("My.Resources.MyResources", GetType(MyResources).Assembly)
+                    _resMgr = temp
+                End If
+                Return _resMgr
+            End Get
+        End Property
+        
+        '''<summary>
+        '''   Overrides the current thread's CurrentUICulture property for all
+        '''   resource lookups using this strongly typed resource class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared Property Culture() As System.Globalization.CultureInfo
+            Get
+                Return _resCulture
+            End Get
+            Set
+                _resCulture = value
+            End Set
+        End Property
+    End Class
+End Namespace]]></ProjectItem>
+                      <BinaryItem
+                        Name="ST_5cc52bb0c7d940629533a7b10d5f5f04.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAIgz52AAAAAAAAAAAOAAIiALAVAAABoAAAAIAAAAAAAAYjgA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAABA4AABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAaBgAAAAgAAAAGgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAQAAAAAYAAAAcAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAIgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABE
+OAAAAAAAAEgAAAACAAUAUCIAAAgVAAABAAAAAAAAAFg3AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKBgAAAoqHgIoGQAACiqmcxoAAAqAAQAABHMbAAAKgAIA
+AARzHAAACoADAAAEcx0AAAqABAAABCoufgEAAARvHgAACioufgIAAARvHwAACioufgMAAARvIAAA
+CioufgQAAARvIQAACioeAigiAAAKKq5+BQAABC0ecgEAAHDQBQAAAigjAAAKbyQAAApzJQAACoAF
+AAAEfgUAAAQqGn4GAAAEKh4CgAYAAAQqQnMiAAAKKCYAAAqACAAABCoeAignAAAKKgAAGzABAD8A
+AAAAAAAAfgcAAAQtMn4IAAAEKCYAAAooKAAACn4HAAAELRxzDQAABoAHAAAE3hB+CAAABCgmAAAK
+KCkAAArcfgcAAAQqAAEQAAACAB0ADCkAEAAAAAAeAigqAAAKKsoCKCsAAApvLAAACnIzAABwby0A
+AApvLgAACm8vAAAKKDAAAAomAigrAAAKFm8xAAAKKjYCAygmAAAKKDIAAAoqHgIoMwAACiou0AgA
+AAIoIwAACioeAigvAAAKKgAAABMwAQAUAAAAAQAAEQKMBQAAGy0IKAEAACsKKwICCgYqIgP+FQUA
+ABsqAAAAEzACACgAAAACAAARAns1AAAKbzYAAAoKBowIAAAbLRIoAgAAKwoCezUAAAoGbzcAAAoG
+KkoCKCIAAAoCczgAAAp9NQAACioAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAA
+0AcAACN+AAA8CAAAGAkAACNTdHJpbmdzAAAAAFQRAABAAAAAI1VTAJQRAAAQAAAAI0dVSUQAAACk
+EQAAZAMAACNCbG9iAAAAAAAAAAIAAAFXHaIJCQ8AAAD6ATMAFgAAAQAAAC8AAAAKAAAADAAAABkA
+AAAEAAAAOAAAAAIAAAA3AAAAAgAAAAQAAAAIAAAACQAAAAgAAAABAAAABgAAAAEAAAADAAAAAwAA
+AAIAAAAAABYFAQAAAAAABgBVA3oHBgD6A3oHBgAsArsGDwAgCAAABgBtAsMFBgA4A8MFBgDhA8MF
+BgB1A8MFBgCOA8MFBgC0AsMFBgCpA0cFBgBZAjQHBgDVATQHBgAAA8MFBgDPAlQECgD4AVUGCgDA
+AQAFCgBAAgAFDgCYAQoHDgCLBs4GBgDoArsGDgCEAlMHDgCcArEABgCXCEcFDgBxBgoHDgAdA7EA
+BgBLAUcFDgABAMQECgDjAVMFBgBFBpoHBgDVBa4FCgCoAZkFBgAPArsGEgC/A5sEEgB8AZsEBgB3
+BEcFBgBOBUcFBgAEAUcFBgAOCcMFBgBkCHoHBgCzBkMEEgDuBJsEFgAzCCgBFgD7ACgBGgDYCE8I
+GgCtCE8IBgCcBkcFAAAAAE8AAAAAAAEAAQAAAAAAiwXjCE0AAQABAAAAAACJBuMIUQABAAIAAAEQ
+AJ4I4whhAAEAAwAAAAAA3AerB2EABQAIAAABEAA9CCsAgQAHAAwAAQAAAHAFKwCNAAkADwAFAQAA
+/AYAAGEACQARAAUBAAAQAAAAYQAJABgAAgEAAIMIAACVAAoAGgAxAAoG+wAxAOEFAwExAPUFCwEx
+ACMGEwERAJQGGwERAHABHwERABgEIwERAJEIJwEhAMkIuQAGBqAAKgFWgHMILQFWgFABLQFQIAAA
+AAAGGKYGBgABAFggAAAAAAYYpgYGAAEAYCAAAAAAERisBjEBAQCKIAAAAAATCHwGNQEBAJYgAAAA
+ABMIewU6AQEAoiAAAAAAEwhtBj8BAQCuIAAAAAATCOwGRAEBALogAAAAAAMYpgYGAAEAwiAAAAAA
+FghBBkkBAQDuIAAAAAAWCFgBTgEBAPUgAAAAABYIZAFTAQEA/SAAAAAAERisBjEBAgAOIQAAAAAG
+GKYGBgACABghAAAAABYIIARZAQIAdCEAAAAABhimBgYAAgB8IQAAAAAGAHYFBgACAK8hAAAAAMYC
+SAiRAAIAvSEAAAAAxgLvAJYAAwDFIQAAAACDAEgBXgEDANEhAAAAAMYCbgSGAAMA3CEAAAAAEQCN
+AGMBAwD8IQAAAAABAHkAawEEALogAAAAAAYYpgYGAAUACCIAAAAAAwjWAEoABQA8IgAAAAAGGKYG
+BgAFAAAAAQA9BAAAAQDfBQAAAQDmAAAAAQDmAAkApgYBABEApgYGABkApgYKACkApgYQADEApgYQ
+ADkApgYQAEEApgYQAEkApgYQAFEApgYQAFkApgYVAGEApgYVAGkApgYQAHEApgYQAHkApgYQAIEA
+pgYaAJEApgYgAKkApgYGALEApgYGALkApgYGANEApgYmAOkApgYQAAkBpgYGABEBpgYGAJkApgYG
+AKEApgYGAAwApgYGABQApgYGABwApgYGACQApgYGAAwA1gBKABQA1gBKABwA1gBKACQA1gBKAMEA
+pgYGANkAFgFPANkACglXAPEApgZdAEEBNARlAAEBpgYGAEkBdgZqAEkBqAhqABkBpgYGABkBewhv
+AFEBLwh1AFkBPgV7AGEBIASCAMEAbgSGAGkB0wiKAFEBuggBAMEASAiRAMEA7wCWAHkBxwCiADQA
+yQi5ADwAIARKADwAKgTQADwApgYGAAgALADxAAgAMAD2ACkAqwAdAy4ACwCbAS4AEwCkAS4AGwDD
+AS4AIwDMAS4AKwD1AS4AMwD1AS4AOwDMAS4AQwD7AS4ASwD1AS4AUwASAi4AWwD1AS4AYwAYAi4A
+awBCAi4AcwBPAkAAiwD2AEAAgwCZAkMAewCiAkMAgwCZAkkAqwAuA2MAewCiAmMAgwCZAmkAqwBC
+A4AAiwD2AIMAkwD2AIMAmwD2AIMAewCiAokAqwBPA6AAiwD2AKkAgwDDAcAAiwD2AMkAgwDDAeAA
+iwD2AOMAuwD2AOMAUwD1AekAswD2AAMBgwCZAgMBowC7AiMBgwCZAiMBWwD1ASACgwCZAiACiwD2
+AEACgwCZAkACiwD2AGACgwCZAmACiwD2AIACgwCZAoACiwD2AKACiwD2AMACiwD2AOACiwD2AOAC
+gwCZAgADiwD2ACADiwD2ACADgwCZApoArQAEAAEABQAFAAYABwAJAAgAAACLBnMBAACNBXgBAABx
+Bn0BAAD+BoIBAABFBocBAAB0AYwBAAA9BJEBAADaAJYBAgAEAAMAAgAFAAUAAgAGAAcAAgAHAAkA
+AgAJAAsAAgAKAA0AAQALAA0AAgAOAA8AAgAYABEALgA1ADwAQwCfALIAwQDIAASAAAABAAAAAAAA
+AAAAAAAAACsAAAAEAAAAAAAAAAAAAADWAKgAAAAAAAQAAAAAAAAAAAAAANYARwUAAAAACgAAAAAA
+AAAAAAAA3wCxAAAAAAAPAAAAAAAAAAAAAADoAHwEAAAAAA8AAAAAAAAAAAAAAOgAWAAAAAAABAAA
+AAAAAAAAAAAA1gBPCAAAAAAAAAAAAQAAAOgHAAAIAAQACQAEAAoABwAAABAAEgB3AAAAEAArAHcA
+AAAAAC0AdwBpAKgAaQDLAAAAAAAAQ29udGV4dFZhbHVlYDEAVGhyZWFkU2FmZU9iamVjdFByb3Zp
+ZGVyYDEAU1RfNWNjNTJiYjBjN2Q5NDA2Mjk1MzNhN2IxMGQ1ZjVmMDQAPE1vZHVsZT4ATWljcm9z
+b2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRTAFQARGlzcG9zZV9fSW5zdGFuY2VfXwBDcmVhdGVfX0lu
+c3RhbmNlX18AdmFsdWVfXwBtc2NvcmxpYgBNaWNyb3NvZnQuVmlzdWFsQmFzaWMAQ3JlYXRlSW5z
+dGFuY2UAZ2V0X0dldEluc3RhbmNlAGluc3RhbmNlAEdldEhhc2hDb2RlAFZhcmlhYmxlAFJ1bnRp
+bWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlJ1
+bnRpbWUAR2V0VHlwZQBGYWlsdXJlAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAF9yZXNDdWx0dXJl
+AFZTVEFSVFNjcmlwdE9iamVjdE1vZGVsQmFzZQBBcHBsaWNhdGlvbkJhc2UAQXBwbGljYXRpb25T
+ZXR0aW5nc0Jhc2UARWRpdG9yQnJvd3NhYmxlU3RhdGUAR3VpZEF0dHJpYnV0ZQBIZWxwS2V5d29y
+ZEF0dHJpYnV0ZQBHZW5lcmF0ZWRDb2RlQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNlckNvZGVBdHRy
+aWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUAQ29tVmlz
+aWJsZUF0dHJpYnV0ZQBBc3NlbWJseVRpdGxlQXR0cmlidXRlAFN0YW5kYXJkTW9kdWxlQXR0cmli
+dXRlAEhpZGVNb2R1bGVOYW1lQXR0cmlidXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAFRh
+cmdldEZyYW1ld29ya0F0dHJpYnV0ZQBEZWJ1Z2dlckhpZGRlbkF0dHJpYnV0ZQBBc3NlbWJseUZp
+bGVWZXJzaW9uQXR0cmlidXRlAE15R3JvdXBDb2xsZWN0aW9uQXR0cmlidXRlAEFzc2VtYmx5RGVz
+Y3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBBc3NlbWJs
+eVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAQ0xTQ29tcGxpYW50
+QXR0cmlidXRlAFNTSVNTY3JpcHRUYXNrRW50cnlQb2ludEF0dHJpYnV0ZQBBc3NlbWJseUNvbXBh
+bnlBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAbV9WYWx1ZQBnZXRfVmFs
+dWUAc2V0X1ZhbHVlAEdldE9iamVjdFZhbHVlAFN5c3RlbS5UaHJlYWRpbmcAU3lzdGVtLlJ1bnRp
+bWUuVmVyc2lvbmluZwBUb1N0cmluZwBNYXRoAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuU2NyaXB0VGFz
+awBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAE1pY3Jvc29mdC5WaXN1
+YWxCYXNpYy5NeVNlcnZpY2VzLkludGVybmFsAFNjcmlwdE9iamVjdE1vZGVsAFN5c3RlbS5Db21w
+b25lbnRNb2RlbABTVF81Y2M1MmJiMGM3ZDk0MDYyOTUzM2E3YjEwZDVmNWYwNC5kbGwAZ2V0X0l0
+ZW0AU3lzdGVtAEVudW0AU3lzdGVtLkNvbXBvbmVudE1vZGVsLkRlc2lnbgBTY3JpcHRNYWluAGdl
+dF9BcHBsaWNhdGlvbgBNeUFwcGxpY2F0aW9uAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5H
+bG9iYWxpemF0aW9uAFN5c3RlbS5SZWZsZWN0aW9uAEN1bHR1cmVJbmZvAG1fQXBwT2JqZWN0UHJv
+dmlkZXIAbV9Vc2VyT2JqZWN0UHJvdmlkZXIAbV9Db21wdXRlck9iamVjdFByb3ZpZGVyAG1fTXlX
+ZWJTZXJ2aWNlc09iamVjdFByb3ZpZGVyAGdldF9SZXNvdXJjZU1hbmFnZXIAU3lzdGVtLkNvZGVE
+b20uQ29tcGlsZXIAZ2V0X1VzZXIARW50ZXIAZ2V0X0NvbXB1dGVyAE15Q29tcHV0ZXIAX3Jlc01n
+cgBBY3RpdmF0b3IALmN0b3IALmNjdG9yAE1vbml0b3IAU3lzdGVtLkRpYWdub3N0aWNzAE1pY3Jv
+c29mdC5WaXN1YWxCYXNpYy5EZXZpY2VzAGdldF9XZWJTZXJ2aWNlcwBNeVdlYlNlcnZpY2VzAE1p
+Y3Jvc29mdC5WaXN1YWxCYXNpYy5BcHBsaWNhdGlvblNlcnZpY2VzAFN5c3RlbS5SdW50aW1lLklu
+dGVyb3BTZXJ2aWNlcwBNaWNyb3NvZnQuVmlzdWFsQmFzaWMuQ29tcGlsZXJTZXJ2aWNlcwBTeXN0
+ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAFN5c3RlbS5SZXNvdXJjZXMAU1RfNWNjNTJiYjBj
+N2Q5NDA2Mjk1MzNhN2IxMGQ1ZjVmMDQuTXkuUmVzb3VyY2VzAE15UmVzb3VyY2VzAFNUXzVjYzUy
+YmIwYzdkOTQwNjI5NTMzYTdiMTBkNWY1ZjA0LlJlc291cmNlcy5yZXNvdXJjZXMARGVidWdnaW5n
+TW9kZXMAZ2V0X1ZhcmlhYmxlcwBNeVNldHRpbmdzAEVxdWFscwBTeXN0ZW0uV2luZG93cy5Gb3Jt
+cwBSdW50aW1lSGVscGVycwBTdWNjZXNzAGdldF9EdHMAU2NyaXB0UmVzdWx0cwBtX1N5bmNPYmpl
+Y3QATXlQcm9qZWN0AEV4aXQARGlhbG9nUmVzdWx0AHNldF9UYXNrUmVzdWx0AG1fQ29udGV4dABT
+aG93AE1lc3NhZ2VCb3gAU1RfNWNjNTJiYjBjN2Q5NDA2Mjk1MzNhN2IxMGQ1ZjVmMDQuTXkAZ2V0
+X0Fzc2VtYmx5AAAAMU0AeQAuAFIAZQBzAG8AdQByAGMAZQBzAC4ATQB5AFIAZQBzAG8AdQByAGMA
+ZQBzAAAJdgBTAFEATAAAAAAA4G8IHyTnbkuIXSI0N+NFLwAEIAEBCAMgAAEFIAEBEREEIAEBDgQg
+AQECBSACAQ4OBSABARFFByAEAQ4ODg4GFRIkARIMBhUSJAESCAYVEiQBEmUGFRIkARIgBCAAEwAH
+AAESbRGAmQUgABKAnQcgAgEOEoCdBAABHBwEAAEBHAUgABKAqQUgABKArQYgARKAsRwDIAAcAyAA
+DgYAARGAuQ4EIAECHAMgAAgEBwEeAAIeAAUQAQAeAAQKAR4ABAcBEwAGFRIkARMABwYVEnEBEwAG
+FRJxARMAAhMABAoBEwAFIAEBEwAIt3pcVhk04IkIsD9ffxHVCjoIiYRdzYCAzJEEAAAAAAQBAAAA
+BwYVEiQBEgwHBhUSJAESCAcGFRIkARJlBwYVEiQBEiADBhJ5AwYSfQMGEhgCBhwCBggDBhEoAwAA
+AQQAABIMBAAAEggEAAASZQQAABIgBAAAEnkEAAASfQUAAQESfQQAABIYBCAAEm0HEAEBHgAeAAcw
+AQEBEB4ABAgAEgwECAASCAQIABJlBAgAEiAECAASeQQIABJ9BAgAEhgEKAATAAgBAAgAAAAAAB4B
+AAEAVAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwEIAQACAAAAAAAoAQAjU1RfNWNjNTJiYjBjN2Q5
+NDA2Mjk1MzNhN2IxMGQ1ZjVmMDQAAAUBAAAAABYBABFDb3B5cmlnaHQgQCAgMjAyMQAABQEAAQAA
+KQEAJDZlYTJhY2I4LTIwMTUtNGMzMS04NjBlLWU1ZjNiM2VjOTc0MwAADAEABzEuMC4wLjAAAEkB
+ABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNwEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUSLk5F
+VCBGcmFtZXdvcmsgNC43CAEAAQAAAAAAGAEACk15VGVtcGxhdGUIMTEuMC4wLjAAAGEBADRTeXN0
+ZW0uV2ViLlNlcnZpY2VzLlByb3RvY29scy5Tb2FwSHR0cENsaWVudFByb3RvY29sEkNyZWF0ZV9f
+SW5zdGFuY2VfXxNEaXNwb3NlX19JbnN0YW5jZV9fAAAAEAEAC015LkNvbXB1dGVyAAATAQAOTXku
+QXBwbGljYXRpb24AAAwBAAdNeS5Vc2VyAAATAQAOTXkuV2ViU2VydmljZXMAAAC0AAAAzsrvvgEA
+AACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9u
+PTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4
+OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0
+AAAAODgAAAAAAAAAAAAAUjgAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQ4AAAAAAAAAAAAAAAA
+X0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAA
+AFhAAADsAwAAAAAAAAAAAADsAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAA
+vQTv/gAAAQAAAAEAAAAAAAAAAQAAAAAAPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAAB
+AFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAA
+AAAAALAETAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAKAMAAAEAMAAwADAAMAAw
+ADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBuAHkA
+TgBhAG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABT
+AFQAXwA1AGMAYwA1ADIAYgBiADAAYwA3AGQAOQA0ADAANgAyADkANQAzADMAYQA3AGIAMQAwAGQA
+NQBmADUAZgAwADQAAAAwAAgAAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4AMAAu
+ADAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAVABfADUAYwBjADUAMgBiAGIA
+MABjADcAZAA5ADQAMAA2ADIAOQA1ADMAMwBhADcAYgAxADAAZAA1AGYANQBmADAANAAuAGQAbABs
+AAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQByAGkAZwBoAHQA
+IABAACAAIAAyADAAMgAxAAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBtAGEAcgBrAHMAAAAA
+AAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBUAF8ANQBjAGMA
+NQAyAGIAYgAwAGMANwBkADkANAAwADYAMgA5ADUAMwAzAGEANwBiADEAMABkADUAZgA1AGYAMAA0
+AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMAVABfADUAYwBjADUA
+MgBiAGIAMABjADcAZAA5ADQAMAA2ADIAOQA1ADMAMwBhADcAYgAxADAAZAA1AGYANQBmADAANAAA
+ADQACAABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAA4AAgA
+AQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAAZDgAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
+                    </ScriptProject>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\For Loop Container\DFT_Sales\OLE_d"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE_d"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Sales]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For Loop Container\DFT_Sales\OLE_d.Connections[OleDbConnection]"
+                      connectionManagerID="{B3983046-0377-4286-80C1-DB6803551BC7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[SSIS_wyklad]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Sale Key]"
+                          cachedDataType="i8"
+                          cachedName="Sale Key"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Sale Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Sale Key]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[City Key]"
+                          cachedDataType="i4"
+                          cachedName="City Key"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[City Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[City Key]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Customer Key]"
+                          cachedDataType="i4"
+                          cachedName="Customer Key"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Customer Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Customer Key]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Bill To Customer Key]"
+                          cachedDataType="i4"
+                          cachedName="Bill To Customer Key"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Bill To Customer Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Bill To Customer Key]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Stock Item Key]"
+                          cachedDataType="i4"
+                          cachedName="Stock Item Key"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Stock Item Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Stock Item Key]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Invoice Date Key]"
+                          cachedDataType="dbDate"
+                          cachedName="Invoice Date Key"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Invoice Date Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Invoice Date Key]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Delivery Date Key]"
+                          cachedDataType="dbDate"
+                          cachedName="Delivery Date Key"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Delivery Date Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Delivery Date Key]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Salesperson Key]"
+                          cachedDataType="i4"
+                          cachedName="Salesperson Key"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Salesperson Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Salesperson Key]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[WWI Invoice ID]"
+                          cachedDataType="i4"
+                          cachedName="WWI Invoice ID"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[WWI Invoice ID]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[WWI Invoice ID]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Package]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Package"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Package]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Package]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                          cachedDataType="i4"
+                          cachedName="Quantity"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Unit Price]"
+                          cachedDataType="numeric"
+                          cachedName="Unit Price"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Unit Price]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Unit Price]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Tax Rate]"
+                          cachedDataType="numeric"
+                          cachedName="Tax Rate"
+                          cachedPrecision="18"
+                          cachedScale="3"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Tax Rate]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Tax Rate]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Total Excluding Tax]"
+                          cachedDataType="numeric"
+                          cachedName="Total Excluding Tax"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Total Excluding Tax]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Excluding Tax]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Tax Amount]"
+                          cachedDataType="numeric"
+                          cachedName="Tax Amount"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Tax Amount]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Tax Amount]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Profit]"
+                          cachedDataType="numeric"
+                          cachedName="Profit"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Profit]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Total Including Tax]"
+                          cachedDataType="numeric"
+                          cachedName="Total Including Tax"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Total Including Tax]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Including Tax]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Total Dry Items]"
+                          cachedDataType="i4"
+                          cachedName="Total Dry Items"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Total Dry Items]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Dry Items]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Total Chiller Items]"
+                          cachedDataType="i4"
+                          cachedName="Total Chiller Items"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Total Chiller Items]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Chiller Items]" />
+                        <inputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].Columns[Lineage Key]"
+                          cachedDataType="i4"
+                          cachedName="Lineage Key"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Lineage Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Lineage Key]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Sale Key]"
+                          dataType="i8"
+                          name="Sale Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[City Key]"
+                          dataType="i4"
+                          name="City Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Customer Key]"
+                          dataType="i4"
+                          name="Customer Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Bill To Customer Key]"
+                          dataType="i4"
+                          name="Bill To Customer Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Stock Item Key]"
+                          dataType="i4"
+                          name="Stock Item Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Invoice Date Key]"
+                          dataType="dbDate"
+                          name="Invoice Date Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Delivery Date Key]"
+                          dataType="dbDate"
+                          name="Delivery Date Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Salesperson Key]"
+                          dataType="i4"
+                          name="Salesperson Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[WWI Invoice ID]"
+                          dataType="i4"
+                          name="WWI Invoice ID" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="100"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Package]"
+                          dataType="wstr"
+                          length="50"
+                          name="Package" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                          dataType="i4"
+                          name="Quantity" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Unit Price]"
+                          dataType="numeric"
+                          name="Unit Price"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Tax Rate]"
+                          dataType="numeric"
+                          name="Tax Rate"
+                          precision="18"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Total Excluding Tax]"
+                          dataType="numeric"
+                          name="Total Excluding Tax"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Tax Amount]"
+                          dataType="numeric"
+                          name="Tax Amount"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
+                          dataType="numeric"
+                          name="Profit"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Total Including Tax]"
+                          dataType="numeric"
+                          name="Total Including Tax"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Total Dry Items]"
+                          dataType="i4"
+                          name="Total Dry Items" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Total Chiller Items]"
+                          dataType="i4"
+                          name="Total Chiller Items" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input].ExternalColumns[Lineage Key]"
+                          dataType="i4"
+                          name="Lineage Key" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For Loop Container\DFT_Sales\OLE_d.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_d.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_d.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_d.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For Loop Container\DFT_Sales\OLE_s"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE_s"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable">User::vSQL</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For Loop Container\DFT_Sales\OLE_s.Connections[OleDbConnection]"
+                      connectionManagerID="{C65B176B-549E-410C-B6A2-8910DEFDA42C}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[WideWorldImportersDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Sale Key]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Sale Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Sale Key]"
+                          name="Sale Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[City Key]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[City Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[City Key]"
+                          name="City Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Customer Key]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Customer Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Customer Key]"
+                          name="Customer Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Bill To Customer Key]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Bill To Customer Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Bill To Customer Key]"
+                          name="Bill To Customer Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Stock Item Key]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Stock Item Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Stock Item Key]"
+                          name="Stock Item Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Invoice Date Key]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Invoice Date Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Invoice Date Key]"
+                          name="Invoice Date Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Delivery Date Key]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Delivery Date Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Delivery Date Key]"
+                          name="Delivery Date Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Salesperson Key]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Salesperson Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Salesperson Key]"
+                          name="Salesperson Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[WWI Invoice ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[WWI Invoice ID]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[WWI Invoice ID]"
+                          name="WWI Invoice ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          length="100"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Package]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Package]"
+                          length="50"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Package]"
+                          name="Package"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Quantity]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Quantity]"
+                          name="Quantity"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Unit Price]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Unit Price]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Unit Price]"
+                          name="Unit Price"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Tax Rate]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Tax Rate]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Tax Rate]"
+                          name="Tax Rate"
+                          precision="18"
+                          scale="3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Excluding Tax]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Total Excluding Tax]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Excluding Tax]"
+                          name="Total Excluding Tax"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Tax Amount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Tax Amount]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Tax Amount]"
+                          name="Tax Amount"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Profit]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Profit]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Profit]"
+                          name="Profit"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Including Tax]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Total Including Tax]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Including Tax]"
+                          name="Total Including Tax"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Dry Items]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Total Dry Items]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Dry Items]"
+                          name="Total Dry Items"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Chiller Items]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Total Chiller Items]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Total Chiller Items]"
+                          name="Total Chiller Items"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Lineage Key]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Lineage Key]"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].Columns[Lineage Key]"
+                          name="Lineage Key"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Sale Key]"
+                          dataType="i8"
+                          name="Sale Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[City Key]"
+                          dataType="i4"
+                          name="City Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Customer Key]"
+                          dataType="i4"
+                          name="Customer Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Bill To Customer Key]"
+                          dataType="i4"
+                          name="Bill To Customer Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Stock Item Key]"
+                          dataType="i4"
+                          name="Stock Item Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Invoice Date Key]"
+                          dataType="dbDate"
+                          name="Invoice Date Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Delivery Date Key]"
+                          dataType="dbDate"
+                          name="Delivery Date Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Salesperson Key]"
+                          dataType="i4"
+                          name="Salesperson Key" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[WWI Invoice ID]"
+                          dataType="i4"
+                          name="WWI Invoice ID" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="100"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Package]"
+                          dataType="wstr"
+                          length="50"
+                          name="Package" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                          dataType="i4"
+                          name="Quantity" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Unit Price]"
+                          dataType="numeric"
+                          name="Unit Price"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Tax Rate]"
+                          dataType="numeric"
+                          name="Tax Rate"
+                          precision="18"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Total Excluding Tax]"
+                          dataType="numeric"
+                          name="Total Excluding Tax"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Tax Amount]"
+                          dataType="numeric"
+                          name="Tax Amount"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Profit]"
+                          dataType="numeric"
+                          name="Profit"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Total Including Tax]"
+                          dataType="numeric"
+                          name="Total Including Tax"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Total Dry Items]"
+                          dataType="i4"
+                          name="Total Dry Items" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Total Chiller Items]"
+                          dataType="i4"
+                          name="Total Chiller Items" />
+                        <externalMetadataColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output].ExternalColumns[Lineage Key]"
+                          dataType="i4"
+                          name="Lineage Key" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Sale Key]"
+                          dataType="i8"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Sale Key]"
+                          name="Sale Key" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[City Key]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[City Key]"
+                          name="City Key" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Customer Key]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Customer Key]"
+                          name="Customer Key" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Bill To Customer Key]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Bill To Customer Key]"
+                          name="Bill To Customer Key" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Stock Item Key]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Stock Item Key]"
+                          name="Stock Item Key" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Invoice Date Key]"
+                          dataType="dbDate"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Invoice Date Key]"
+                          name="Invoice Date Key" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Delivery Date Key]"
+                          dataType="dbDate"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Delivery Date Key]"
+                          name="Delivery Date Key" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Salesperson Key]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Salesperson Key]"
+                          name="Salesperson Key" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[WWI Invoice ID]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[WWI Invoice ID]"
+                          name="WWI Invoice ID" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Package]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Package]"
+                          name="Package" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                          name="Quantity" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Unit Price]"
+                          dataType="numeric"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Unit Price]"
+                          name="Unit Price"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Tax Rate]"
+                          dataType="numeric"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Tax Rate]"
+                          name="Tax Rate"
+                          precision="18"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Total Excluding Tax]"
+                          dataType="numeric"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Total Excluding Tax]"
+                          name="Total Excluding Tax"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Tax Amount]"
+                          dataType="numeric"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Tax Amount]"
+                          name="Tax Amount"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Profit]"
+                          dataType="numeric"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Profit]"
+                          name="Profit"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Total Including Tax]"
+                          dataType="numeric"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Total Including Tax]"
+                          name="Total Including Tax"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Total Dry Items]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Total Dry Items]"
+                          name="Total Dry Items" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Total Chiller Items]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Total Chiller Items]"
+                          name="Total Chiller Items" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Lineage Key]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[Lineage Key]"
+                          name="Lineage Key" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For Loop Container\DFT_Sales\RCN"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="RCN">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::vNoRows</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\For Loop Container\DFT_Sales\RCN.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For Loop Container\DFT_Sales\RCN.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\For Loop Container\DFT_Sales\RCN.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\For Loop Container\DFT_Sales.Paths[OLE DB Source Output]"
+                  endId="Package\For Loop Container\DFT_Sales\RCN.Inputs[Row Count Input 1]"
+                  name="OLE DB Source Output"
+                  startId="Package\For Loop Container\DFT_Sales\OLE_s.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\For Loop Container\DFT_Sales.Paths[Row Count Output 1]"
+                  endId="Package\For Loop Container\DFT_Sales\OLE_d.Inputs[OLE DB Destination Input]"
+                  name="Row Count Output 1"
+                  startId="Package\For Loop Container\DFT_Sales\RCN.Outputs[Row Count Output 1]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container\SQL_LogSales"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C787E330-AB12-45F8-A9FC-ED66CD52A6A4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL_LogSales"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B3983046-0377-4286-80C1-DB6803551BC7}"
+              SQLTask:SqlStatementSource="insert into DWH_log_v1 (Data_ladowania,Wykonywany_pakiet,Serwer,Tablica,Atrybut,IloscWierszy)&#xA;values (getdate(),?,?,?,?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="$Package::pObject"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::vYear"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::vNoRows"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::MachineName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{AC7A4A5A-8C7D-4186-93CB-FF6108306B6E}"
+          DTS:From="Package\For Loop Container\DFT_Sales"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\For Loop Container\SQL_LogSales" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="128,42"
+          Id="Package\For Loop Container\DFT_Sales"
+          TopLeft="106,36" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\For Loop Container\SQL_LogSales"
+          TopLeft="113,198" />
+        <EdgeLayout
+          Id="Package\For Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="170,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.5,120"
+              Start="0,0"
+              End="15.5,112.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,56"
+                    Point2="0,60"
+                    Point3="4,60" />
+                  <mssgle:LineSegment
+                    End="11.5,60" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.5,60"
+                    Point2="15.5,60"
+                    Point3="15.5,64" />
+                  <mssgle:LineSegment
+                    End="15.5,112.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="343,301"
+          Size="343,344"
+          Id="Package\For Loop Container"
+          TopLeft="209,48" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\For Loop Container\DFT_Sales">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="99,42"
+          Id="Package\For Loop Container\DFT_Sales\RCN"
+          TopLeft="351,286" />
+        <NodeLayout
+          Size="108,42"
+          Id="Package\For Loop Container\DFT_Sales\OLE_s"
+          TopLeft="296,156" />
+        <NodeLayout
+          Size="110,42"
+          Id="Package\For Loop Container\DFT_Sales\OLE_d"
+          TopLeft="445,408" />
+        <EdgeLayout
+          Id="Package\For Loop Container\DFT_Sales.Paths[Row Count Output 1]"
+          TopLeft="400.5,328">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="99.5,80"
+              Start="0,0"
+              End="99.5,72.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36"
+                    Point2="0,40"
+                    Point3="4,40" />
+                  <mssgle:LineSegment
+                    End="95.5,40" />
+                  <mssgle:CubicBezierSegment
+                    Point1="95.5,40"
+                    Point2="99.5,40"
+                    Point3="99.5,44" />
+                  <mssgle:LineSegment
+                    End="99.5,72.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\For Loop Container\DFT_Sales.Paths[OLE DB Source Output]"
+          TopLeft="350,198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.5,88"
+              Start="0,0"
+              End="50.5,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40"
+                    Point2="0,44"
+                    Point3="4,44" />
+                  <mssgle:LineSegment
+                    End="46.5,44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.5,44"
+                    Point2="50.5,44"
+                    Point3="50.5,48" />
+                  <mssgle:LineSegment
+                    End="50.5,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\For Loop Container\DFT_Sales\OLE_s">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\For Loop Container\DFT_Sales\OLE_d">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package\For Loop Container\DFT_Sales.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="127,42"
+          Id="Package\For Loop Container\DFT_Sales.EventHandlers[OnError]\SCR_Error"
+          TopLeft="385,144" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

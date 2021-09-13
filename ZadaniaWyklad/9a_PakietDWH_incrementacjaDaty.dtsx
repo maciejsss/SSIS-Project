@@ -1,0 +1,1066 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/14/2021 7:40:28 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-5H6628A"
+  DTS:CreatorName="DESKTOP-5H6628A\Maciej"
+  DTS:DTSID="{6158BA1F-20C8-4EB1-A74A-4C5B49C7C1C6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1045"
+  DTS:ObjectName="9a_PakietDWH_incrementacjaDaty"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{59F9B402-845A-4B40-AE40-95896581A99F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C1D45CD1-8962-4BB7-B524-D8A6CC654665}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vGrpNameFact">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1A004D67-0FF5-4BBE-8D1B-1D79BFF6F69F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vGrpValueFact">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_SrcToTgt"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{FB6CAABF-F215-43FA-B51A-985C7412A1EA}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_SrcToTgt"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_SrcToTgt\OLE_Src"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_Src"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from Fact.Sale where [Invoice Date Key] = ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0:Input",{1A004D67-0FF5-4BBE-8D1B-1D79BFF6F69F};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_SrcToTgt\OLE_Src.Connections[OleDbConnection]"
+                  connectionManagerID="{C65B176B-549E-410C-B6A2-8910DEFDA42C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WideWorldImportersDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Sale Key]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Sale Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Sale Key]"
+                      name="Sale Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[City Key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[City Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[City Key]"
+                      name="City Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Customer Key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Customer Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Customer Key]"
+                      name="Customer Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Stock Item Key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Stock Item Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Stock Item Key]"
+                      name="Stock Item Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Invoice Date Key]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Invoice Date Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Invoice Date Key]"
+                      name="Invoice Date Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Salesperson Key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Salesperson Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Salesperson Key]"
+                      name="Salesperson Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[WWI Invoice ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[WWI Invoice ID]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[WWI Invoice ID]"
+                      name="WWI Invoice ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      length="100"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Package]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Package]"
+                      length="50"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Package]"
+                      name="Package"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Unit Price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Unit Price]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Unit Price]"
+                      name="Unit Price"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Tax Rate]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Tax Rate]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Tax Rate]"
+                      name="Tax Rate"
+                      precision="18"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Excluding Tax]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Total Excluding Tax]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Excluding Tax]"
+                      name="Total Excluding Tax"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Tax Amount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Tax Amount]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Tax Amount]"
+                      name="Tax Amount"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Profit]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Profit]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Profit]"
+                      name="Profit"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Including Tax]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Total Including Tax]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Including Tax]"
+                      name="Total Including Tax"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Dry Items]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Total Dry Items]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Dry Items]"
+                      name="Total Dry Items"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Chiller Items]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Total Chiller Items]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Chiller Items]"
+                      name="Total Chiller Items"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Sale Key]"
+                      dataType="i8"
+                      name="Sale Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[City Key]"
+                      dataType="i4"
+                      name="City Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Customer Key]"
+                      dataType="i4"
+                      name="Customer Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Bill To Customer Key]"
+                      dataType="i4"
+                      name="Bill To Customer Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Stock Item Key]"
+                      dataType="i4"
+                      name="Stock Item Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Invoice Date Key]"
+                      dataType="dbDate"
+                      name="Invoice Date Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Delivery Date Key]"
+                      dataType="dbDate"
+                      name="Delivery Date Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Salesperson Key]"
+                      dataType="i4"
+                      name="Salesperson Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[WWI Invoice ID]"
+                      dataType="i4"
+                      name="WWI Invoice ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="100"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Package]"
+                      dataType="wstr"
+                      length="50"
+                      name="Package" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="i4"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Unit Price]"
+                      dataType="numeric"
+                      name="Unit Price"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Tax Rate]"
+                      dataType="numeric"
+                      name="Tax Rate"
+                      precision="18"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Total Excluding Tax]"
+                      dataType="numeric"
+                      name="Total Excluding Tax"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Tax Amount]"
+                      dataType="numeric"
+                      name="Tax Amount"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Profit]"
+                      dataType="numeric"
+                      name="Profit"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Total Including Tax]"
+                      dataType="numeric"
+                      name="Total Including Tax"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Total Dry Items]"
+                      dataType="i4"
+                      name="Total Dry Items" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Total Chiller Items]"
+                      dataType="i4"
+                      name="Total Chiller Items" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].ExternalColumns[Lineage Key]"
+                      dataType="i4"
+                      name="Lineage Key" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Sale Key]"
+                      dataType="i8"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Sale Key]"
+                      name="Sale Key" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[City Key]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[City Key]"
+                      name="City Key" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Customer Key]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Customer Key]"
+                      name="Customer Key" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Stock Item Key]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Stock Item Key]"
+                      name="Stock Item Key" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Invoice Date Key]"
+                      dataType="dbDate"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Invoice Date Key]"
+                      name="Invoice Date Key" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Salesperson Key]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Salesperson Key]"
+                      name="Salesperson Key" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[WWI Invoice ID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[WWI Invoice ID]"
+                      name="WWI Invoice ID" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Package]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Package]"
+                      name="Package" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Unit Price]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Unit Price]"
+                      name="Unit Price"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Tax Rate]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Tax Rate]"
+                      name="Tax Rate"
+                      precision="18"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Total Excluding Tax]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Total Excluding Tax]"
+                      name="Total Excluding Tax"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Tax Amount]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Tax Amount]"
+                      name="Tax Amount"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Profit]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Profit]"
+                      name="Profit"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Total Including Tax]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Total Including Tax]"
+                      name="Total Including Tax"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Total Dry Items]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Total Dry Items]"
+                      name="Total Dry Items" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Total Chiller Items]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[Total Chiller Items]"
+                      name="Total Chiller Items" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SrcToTgt\OLR_Tgt"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLR_Tgt"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[FactSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_SrcToTgt\OLR_Tgt.Connections[OleDbConnection]"
+                  connectionManagerID="{B3983046-0377-4286-80C1-DB6803551BC7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SSIS_wyklad]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Sale Key]"
+                      cachedDataType="i8"
+                      cachedName="Sale Key"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Sale Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Sale Key]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[City Key]"
+                      cachedDataType="i4"
+                      cachedName="City Key"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[City Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[City Key]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Customer Key]"
+                      cachedDataType="i4"
+                      cachedName="Customer Key"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Customer Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Customer Key]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Stock Item Key]"
+                      cachedDataType="i4"
+                      cachedName="Stock Item Key"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Stock Item Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Stock Item Key]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Invoice Date Key]"
+                      cachedDataType="dbDate"
+                      cachedName="Invoice Date Key"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Invoice Date Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Invoice Date Key]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Salesperson Key]"
+                      cachedDataType="i4"
+                      cachedName="Salesperson Key"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Salesperson Key]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Salesperson Key]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[WWI Invoice ID]"
+                      cachedDataType="i4"
+                      cachedName="WWI Invoice ID"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[WWI Invoice ID]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[WWI Invoice ID]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Description"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Description]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Package]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Package"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Package]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Package]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                      cachedDataType="i4"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Unit Price]"
+                      cachedDataType="numeric"
+                      cachedName="Unit Price"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Unit Price]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Unit Price]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Tax Rate]"
+                      cachedDataType="numeric"
+                      cachedName="Tax Rate"
+                      cachedPrecision="18"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Tax Rate]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Tax Rate]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Total Excluding Tax]"
+                      cachedDataType="numeric"
+                      cachedName="Total Excluding Tax"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Total Excluding Tax]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Excluding Tax]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Tax Amount]"
+                      cachedDataType="numeric"
+                      cachedName="Tax Amount"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Tax Amount]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Tax Amount]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Profit]"
+                      cachedDataType="numeric"
+                      cachedName="Profit"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Profit]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Total Including Tax]"
+                      cachedDataType="numeric"
+                      cachedName="Total Including Tax"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Total Including Tax]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Including Tax]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Total Dry Items]"
+                      cachedDataType="i4"
+                      cachedName="Total Dry Items"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Total Dry Items]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Dry Items]" />
+                    <inputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].Columns[Total Chiller Items]"
+                      cachedDataType="i4"
+                      cachedName="Total Chiller Items"
+                      externalMetadataColumnId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Total Chiller Items]"
+                      lineageId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output].Columns[Total Chiller Items]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Sale Key]"
+                      dataType="i8"
+                      name="Sale Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[City Key]"
+                      dataType="i4"
+                      name="City Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Customer Key]"
+                      dataType="i4"
+                      name="Customer Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Stock Item Key]"
+                      dataType="i4"
+                      name="Stock Item Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Invoice Date Key]"
+                      dataType="dbDate"
+                      name="Invoice Date Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Salesperson Key]"
+                      dataType="i4"
+                      name="Salesperson Key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[WWI Invoice ID]"
+                      dataType="i4"
+                      name="WWI Invoice ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="100"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Package]"
+                      dataType="wstr"
+                      length="50"
+                      name="Package" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      dataType="i4"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Unit Price]"
+                      dataType="numeric"
+                      name="Unit Price"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Tax Rate]"
+                      dataType="numeric"
+                      name="Tax Rate"
+                      precision="18"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Total Excluding Tax]"
+                      dataType="numeric"
+                      name="Total Excluding Tax"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Tax Amount]"
+                      dataType="numeric"
+                      name="Tax Amount"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
+                      dataType="numeric"
+                      name="Profit"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Total Including Tax]"
+                      dataType="numeric"
+                      name="Total Including Tax"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Total Dry Items]"
+                      dataType="i4"
+                      name="Total Dry Items" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input].ExternalColumns[Total Chiller Items]"
+                      dataType="i4"
+                      name="Total Chiller Items" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SrcToTgt\OLR_Tgt.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLR_Tgt.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SrcToTgt\OLR_Tgt.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SrcToTgt\OLR_Tgt.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_SrcToTgt.Paths[OLE DB Source Output]"
+              endId="Package\DFT_SrcToTgt\OLR_Tgt.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_SrcToTgt\OLE_Src.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Parameter Fact"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5DB001B6-C643-4837-BE6F-20F98FDD7AC9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Parameter Fact"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B3983046-0377-4286-80C1-DB6803551BC7}"
+          SQLTask:SqlStatementSource="select GroupName,GroupValue from dbo.TabConfig where GroupId=3"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::vGrpNameFact" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::vGrpValueFact" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_ParameterUpdate"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B6CBE100-B265-47C8-83DE-B920396B35A5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_ParameterUpdate"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B3983046-0377-4286-80C1-DB6803551BC7}"
+          SQLTask:SqlStatementSource="update TabConfig&#xA;set GroupValue = convert(varchar(10),DATEADD(d,1,?),120)&#xA;where GroupId=3" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vGrpValueFact"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{78641CC0-0AA2-4706-B242-59F73E33F805}"
+      DTS:From="Package\SQL Parameter Fact"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_SrcToTgt" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{BCC07B14-CA25-46E5-865F-BEA7B96108B8}"
+      DTS:From="Package\DFT_SrcToTgt"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL_ParameterUpdate" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="146,42"
+          Id="Package\DFT_SrcToTgt"
+          TopLeft="366,305" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\SQL Parameter Fact"
+          TopLeft="337,167" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\SQL_ParameterUpdate"
+          TopLeft="342,401" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="423.5,209">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.5,96"
+              Start="0,0"
+              End="15.5,88.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44"
+                    Point2="0,48"
+                    Point3="4,48" />
+                  <mssgle:LineSegment
+                    End="11.5,48" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.5,48"
+                    Point2="15.5,48"
+                    Point3="15.5,52" />
+                  <mssgle:LineSegment
+                    End="15.5,88.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="437,347">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_SrcToTgt">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="120,42"
+          Id="Package\DFT_SrcToTgt\OLR_Tgt"
+          TopLeft="336,253" />
+        <NodeLayout
+          Size="118,42"
+          Id="Package\DFT_SrcToTgt\OLE_Src"
+          TopLeft="260,80" />
+        <EdgeLayout
+          Id="Package\DFT_SrcToTgt.Paths[OLE DB Source Output]"
+          TopLeft="319,122">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77,131"
+              Start="0,0"
+              End="77,123.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,61.5"
+                    Point2="0,65.5"
+                    Point3="4,65.5" />
+                  <mssgle:LineSegment
+                    End="73,65.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="73,65.5"
+                    Point2="77,65.5"
+                    Point3="77,69.5" />
+                  <mssgle:LineSegment
+                    End="77,123.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_SrcToTgt\OLE_Src">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_SrcToTgt\OLR_Tgt">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

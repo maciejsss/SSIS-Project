@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="WideWorldImportersDW"
+  DTS:DTSID="{C65B176B-549E-410C-B6A2-8910DEFDA42C}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=DESKTOP-5H6628A\SQL;User ID=SSIS_PackageLogin;Initial Catalog=WideWorldImportersDW;Provider=SQLNCLI11.1;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAy/esVff/MUuRFZN7gftWPgAAAAACAAAAAAAQZgAAAAEAACAAAABshzeLYPNi4LRaKTjBRVMxYAub6wEvCXeb2EydMxLDFAAAAAAOgAAAAAIAACAAAACLKpys91R2jj8riJZV0M28Tii3o/aNtLOyPmdpYFoq1YAAAADLio7HWZjj0EwUjLg5lTjsgjgn0VySE3uu9MbkxqVUIFcXMTjjSHoSydoS1ugcna2VO3ZRjudddP3B9wgHj6H6fRfraw8PkTy9cHH5KWPuzbYPJOZAXjPboJu5trW4VSC+G9HBqJHjGUx4LkfRDFDJfXbG2cOOyAY57c4GadifHUAAAADJBcfiTSHF6ETLvM7UAe0SQzOkCYpK3kEDXHbVgipUEKg8WxR2RK0LaxLzeB+8FlWpCqfyhAKJsPjCB2HOLX0Z</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

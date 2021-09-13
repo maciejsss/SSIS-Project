@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="SSIS_wyklad_DWH"
+  DTS:DTSID="{E72E6B66-09B6-4DED-A991-094032D0E0F2}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=DESKTOP-5H6628A\SQL;User ID=SSIS_PackageLogin;Initial Catalog=SSIS_wyklad_DWH;Provider=SQLNCLI11.1;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAy/esVff/MUuRFZN7gftWPgAAAAACAAAAAAAQZgAAAAEAACAAAAB6qrO+ucgYA2BaiJuK0G32j898RkKo0xkTFyx+XpA9QQAAAAAOgAAAAAIAACAAAADHiWgCM9SVKwz5ubohPUIv0F376TzD06zVtLH2AnnUZIAAAADQy+Lyd+sCYUpZ6xU88m26ziIJs7tXqS1J2kj5tWJ5fuLrTvZX0aTWSkY3B5GSr/2nACKFPLrqVNG9bA4kit5+sPZStJnJ52JNMFsUyRpad4CQ9T18LKJM/yEam14EMjAgJ4mdbrG0yCXJmMxnvxuLZ1MqO062xtyCGv2wYncKRUAAAACAWkr/Q1jYpMxOA18FS1k3260Cm8XXLkeh+QQjxwMYmG1OXeUc1VqvNsnPYZNUsMNvfcSzeem0SKshtvI3kVwo</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

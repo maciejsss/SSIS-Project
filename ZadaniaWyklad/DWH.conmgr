@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DWH"
+  DTS:DTSID="{6C571E2E-B3B2-4620-B21D-C59D6339A496}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::pDWHEnv]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=DESKTOP-5H6628A\SQL;User ID=SSIS_PackageLogin;Initial Catalog=SSIS_wyklad;Provider=SQLNCLI11.1;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAy/esVff/MUuRFZN7gftWPgAAAAACAAAAAAAQZgAAAAEAACAAAABHipwYxisKyy2dT6lPUPp4ME2xm4vbcsyg5AucArluiAAAAAAOgAAAAAIAACAAAAB+OMMWRAdIrNFXLcTyOwfIJaA6c7il66KDyg9ya6yhUIAAAAAYsmGxAKSWVXUNJR5CD4OZd8hosKM17jc4BpMW7LbRSrAwzgnmuSTHC1s3buaS20JxxZTTr0dG7djG7AmDVFrN3SU1Bx3lUTbmsjXapzQC4SWfgll2aYSAhVV68RaomFFAlq4q35NJSzLqyo98XHWufUo2Us60juDdrcmBweDVhUAAAACEAhhFxxw/mmhIH9p6CnPmP/bDve3BE/27xSJsnEFo97GSdiPhpAnUFZKs0VVkPyPoK18Vw6guxU2kuZFS2ks6</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
